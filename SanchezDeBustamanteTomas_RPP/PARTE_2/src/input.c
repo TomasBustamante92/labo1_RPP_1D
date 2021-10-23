@@ -389,7 +389,7 @@ void cambiarInicialesMayuscula(char* string)
 
 void input_systemPause(void)
 {
-	printf("\nIngrese ENTER para continuar... ");
+	printf("\n\nIngrese ENTER para continuar... ");
 	__fpurge(stdin);
 	getchar();
 	input_limpiarPantalla();

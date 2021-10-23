@@ -12,6 +12,38 @@
 #include "estadiaDiaria.h"
 #include "duenio.h"
 
+/// @fn int nexo_modificarEstadia(sEstadiaDiaria*, int, sDuenio*, int, sPerro*, int, int, int)
+/// @brief  el usuario puede modificar el telefono o el perro por medio de un sub-menu
+///
+/// @param estadias
+/// @param estadiasLen
+/// @param duenios
+/// @param dueniosLen
+/// @param perros
+/// @param perrosLen
+/// @param ultimoIdEstadia
+/// @param ultimoIdPerros
+/// @return  devuelve [0] en caso de que se realice alguna modificacion, caso contrario devuelve [-1]
+int nexo_modificarEstadia(sEstadiaDiaria* estadias, int estadiasLen, sDuenio* duenios, int dueniosLen, sPerro* perros, int perrosLen, int ultimoIdEstadia, int ultimoIdPerros);
+
+/// @fn void ordenarEstadiasPorFechaNombre(sEstadiaDiaria*, int, sDuenio*, int)
+/// @brief ordena el array de estadia por fecha y nombre
+///
+/// @param estadias
+/// @param estadiasLen
+/// @param duenios
+/// @param dueniosLen
+void ordenarEstadiasPorFechaNombre(sEstadiaDiaria* estadias, int estadiasLen, sDuenio* duenios, int dueniosLen);
+
+/// @fn void estadiaDuenioSwap(sEstadiaDiaria, sEstadiaDiaria, sDuenio, sDuenio)
+/// @brief intercambia de contenido de 1 al 2 y viceversa
+///
+/// @param estadia1
+/// @param estadia2
+/// @param duenio1
+/// @param duenio2
+void estadiaDuenioSwap(sEstadiaDiaria* pEstadia1, sEstadiaDiaria* pEstadia2, sDuenio* pDuenio1, sDuenio* pDuenio2);
+
 /// @fn int nexo_cancelarEstadia(sEstadiaDiaria*, int, sDuenio*, int, sPerro*, int, int)
 /// @brief  dar de baja logica una estadia
 ///

@@ -26,6 +26,15 @@ typedef struct{
 
 } sPerro;
 
+
+/// @fn float promedioDeEdadDePerros(Perro*, int)
+/// @brief imprime el promedio de edad de los perros
+///
+/// @param perros array de perros
+/// @param perrosLen longitud del array de perros
+/// @return si hay perros devuelve [0], caso de que no haya ninguno devuelve [-1]
+int promedioDeEdadDePerros(sPerro* perros,int perrosLen);
+
 /// @fn int perro_encontrarPerroId(Perro*, int, int)
 /// @brief se le ingresa un ID y lo busca en el array de perros, caso de que lo encuentre devuelve el indice
 ///

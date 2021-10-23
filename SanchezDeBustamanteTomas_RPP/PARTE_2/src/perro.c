@@ -83,6 +83,37 @@ int perro_encontrarPerroId(sPerro* perros, int perrosLen, int idPerroAux)
 	return retorno;
 }
 
+int promedioDeEdadDePerros(sPerro* perros, int perrosLen)
+{
+	int retorno = -1;
+	float promedio;
+	int i;
+	int contador = 0;
+	int acumuladorEdades = 0;
+
+	if(perros != NULL && perrosLen > 0)
+	{
+		for(i=0 ; i<perrosLen ; i++)
+		{
+			if(perros[i].isEmpty == OCUPADO)
+			{
+				acumuladorEdades += perros[i].edad;
+				contador++;
+			}
+		}
+
+		if(contador > 0)
+		{
+			promedio = (float)acumuladorEdades / contador;
+			retorno = 0;
+
+			input_limpiarPantalla();
+			printf("El promedio de edad de los perros es de %.2f años \n", promedio);
+		}
+	}
+
+	return retorno;
+}
 
 
 

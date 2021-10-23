@@ -85,6 +85,10 @@ int main(void) {
 				}
 				break;
 			case 2:
+				if(nexo_modificarEstadia(estadias, ESTADIA_LEN, duenios, DUENIOS_LEN, perros, PERROS_LEN, ultimoIdEstadia, ultimoIdPerros) != -1)
+				{
+					input_systemPause();
+				}
 				break;
 			case 3:
 				if(nexo_cancelarEstadia(estadias, ESTADIA_LEN, duenios, DUENIOS_LEN, perros, PERROS_LEN, ultimoIdEstadia) != -1)
@@ -93,8 +97,15 @@ int main(void) {
 					printf("Baja exitosa! \n");
 					input_systemPause();
 				}
+				else
+				{
+					input_limpiarPantalla();
+					printf("ERROR: ARRAYS VACIOS! \n");
+					input_systemPause();
+				}
 				break;
 			case 4:
+				ordenarEstadiasPorFechaNombre(estadias, ESTADIA_LEN, duenios, DUENIOS_LEN);
 				if(nexo_imprimirEstadias(estadias, ESTADIA_LEN, duenios, DUENIOS_LEN, perros, PERROS_LEN) != -1)
 				{
 					input_systemPause();
@@ -107,8 +118,28 @@ int main(void) {
 				}
 				break;
 			case 5:
+				if(perro_mostrarPerros(perros, PERROS_LEN) != -1)
+				{
+					input_systemPause();
+				}
+				else
+				{
+					input_limpiarPantalla();
+					printf("No hay perros en la base de datos! \n");
+					input_systemPause();
+				}
 				break;
 			case 6:
+				if(promedioDeEdadDePerros(perros, PERROS_LEN) != -1)
+				{
+					input_systemPause();
+				}
+				else
+				{
+					input_limpiarPantalla();
+					printf("No hay perros en la base de datos! \n");
+					input_systemPause();
+				}
 				break;
 			case 7:
 				break;
