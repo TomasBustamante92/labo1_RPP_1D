@@ -23,7 +23,7 @@
 ///
 void input_systemPause(void);
 
-/// @fn int input_stringNombreApellido(char*, char*, char*, int)
+/// @fn int input_pedirStringNombreApellido(char*, char*, char*, int)
 /// @brief pide un nombre o apellido al usuario
 ///
 /// @param string devuelve un string en caso de que lo que se haya ingresado este correcto
@@ -31,7 +31,7 @@ void input_systemPause(void);
 /// @param errorMessage mensaje para que el usuario en caso de que haya contestado con un error
 /// @param max numero maximo de caracteres que puede ingresar
 /// @return devuelve [0] en caso de que se haya ingresado un string correctamente, caso contrario se devolvera un [-1]
-int input_stringNombreApellido(char* string, char* message, char* errorMessage, int max);
+int input_pedirStringNombreApellido(char* string, char* message, char* errorMessage, int max);
 
 /// @fn void cambiarInicialesMayuscula(char*)
 /// @brief Cambia las iniciales a mayuscula

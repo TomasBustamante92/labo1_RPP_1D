@@ -7,6 +7,117 @@
 
 #include "nexo.h"
 
+int listarPerrosConEstadias(sEstadiaDiaria* estadias, int estadiasLen, sDuenio* duenios, int dueniosLen, sPerro* perros, int perrosLen)
+{
+	int retorno = -1;
+	int i;
+	int j;
+	int indiceDuenio;
+
+	if(estadias != NULL && estadiasLen > 0 && duenios != NULL && dueniosLen > 0 && perros != NULL && perrosLen > 0)
+	{
+		input_limpiarPantalla();
+		for(i=0; i<perrosLen ; i++)
+		{
+			printf("- %s \n\n%-16s %-15s %-15s \n"
+					"------------------------------------------\n",perros[i].nombre, "Dueño", "Telefono", "Fecha");
+			for(j=0 ; j<estadiasLen ; j++)
+			{
+				if(estadias[j].isEmpty == OCUPADO && estadias[j].idPerro == perros[i].idPerro)
+				{
+					retorno = 0;
+					indiceDuenio = duenio_encontrarIndiceDuenio(duenios, dueniosLen, estadias[j].idDuenio);
+					printf("%-15s %-15d %-d/%d/%d \n",
+							duenios[indiceDuenio].nombre, duenios[indiceDuenio].telefono, estadias[j].fecha.dia, estadias[j].fecha.mes, estadias[j].fecha.anio);
+				}
+			}
+			printf("\n<<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>><<>>\n\n");
+		}
+	}
+	return retorno;
+}
+
+int mostrarPerroConMasEstadias(sEstadiaDiaria* estadias, int estadiasLen, sPerro* perros, int perrosLen)
+{
+	int retorno = -1;
+	int contadorLobo = 0;
+	int contadorSheila = 0;
+	int contadorReina = 0;
+	int i;
+
+	if(estadias != NULL && estadiasLen > 0 && perros != NULL && perrosLen > 0)
+	{
+		for(i=0 ; i<estadiasLen ; i++)
+		{
+			if(estadias[i].isEmpty == OCUPADO)
+			{
+				switch(estadias[i].idPerro)
+				{
+					case 7000:
+						contadorLobo++;
+						break;
+					case 7001:
+						contadorSheila++;
+						break;
+					case 7002:
+						contadorReina++;
+						break;
+				}
+			}
+		}
+
+		if(contadorLobo > 0 || contadorSheila > 0 || contadorReina > 0)
+		{
+			retorno = 0;
+
+			if(contadorLobo > contadorSheila && contadorLobo > contadorReina)
+			{
+				input_limpiarPantalla();
+				printf("El perro con mas estadias es: \n-Lobo con %d estadias \n", contadorLobo);
+			}
+			else if(contadorSheila > contadorLobo && contadorSheila > contadorReina)
+			{
+				input_limpiarPantalla();
+				printf("El perro con mas estadias es: \n-Sheila con %d estadias \n", contadorSheila);
+			}
+			else if(contadorReina > contadorLobo && contadorReina > contadorSheila)
+			{
+				input_limpiarPantalla();
+				printf("El perro con mas estadias es: \n-Reina con %d estadias \n", contadorReina);
+			}
+			else
+			{
+				input_limpiarPantalla();
+				printf("Los perros con mas estadias son: \n");
+				if(contadorLobo == contadorSheila && contadorLobo > contadorReina)
+				{
+					printf("-Lobo con %d estadias \n-Sheila con %d estadias \n", contadorLobo, contadorSheila);
+				}
+				else if(contadorLobo == contadorReina && contadorLobo > contadorSheila)
+				{
+					printf("-Lobo con %d estadias \n-Reina con %d estadias \n", contadorLobo, contadorReina);
+				}
+				else if(contadorReina == contadorSheila && contadorReina > contadorLobo)
+				{
+					printf("-Reina con %d estadias \n-Sheila con %d estadias \n", contadorReina, contadorSheila);
+				}
+				else
+				{
+					printf("-Lobo con %d estadias \n-Sheila con %d estadias \n-Reina con %d estadias \n", contadorLobo, contadorSheila, contadorReina);
+				}
+			}
+		}
+		else
+		{
+			input_limpiarPantalla();
+			printf("No hay estadias en la base de datos! \n");
+			input_systemPause();
+		}
+	}
+	return retorno;
+}
+
+
 int nexo_modificarEstadia(sEstadiaDiaria* estadias, int estadiasLen, sDuenio* duenios, int dueniosLen, sPerro* perros, int perrosLen, int ultimoIdEstadia, int ultimoIdPerros)
 {
 	int retorno = -1;
@@ -108,6 +219,9 @@ int nexo_modificarEstadia(sEstadiaDiaria* estadias, int estadiasLen, sDuenio* du
 								printf("No hay perros en la base de datos! \n");
 								input_systemPause();
 							}
+							break;
+						case 3:
+							input_limpiarPantalla();
 							break;
 					}
 
@@ -358,22 +472,22 @@ void ordenarEstadiasPorFechaNombre(sEstadiaDiaria* estadias, int estadiasLen, sD
 
 					if(estadias[i].fecha.anio < estadias[j].fecha.anio)
 					{
-						estadiaDuenioSwap(&estadias[i], &estadias[j], &duenios[duenioIndice1], &duenios[duenioIndice2]);
+						SwapearEstadiaDuenio(&estadias[i], &estadias[j], &duenios[duenioIndice1], &duenios[duenioIndice2]);
 					}
 					else if(estadias[i].fecha.anio == estadias[j].fecha.anio && estadias[i].fecha.mes < estadias[j].fecha.mes)
 					{
-						estadiaDuenioSwap(&estadias[i], &estadias[j], &duenios[duenioIndice1], &duenios[duenioIndice2]);
+						SwapearEstadiaDuenio(&estadias[i], &estadias[j], &duenios[duenioIndice1], &duenios[duenioIndice2]);
 					}
 					else if(estadias[i].fecha.anio == estadias[j].fecha.anio && estadias[i].fecha.mes == estadias[j].fecha.mes && estadias[i].fecha.dia < estadias[j].fecha.dia)
 					{
-						estadiaDuenioSwap(&estadias[i], &estadias[j], &duenios[duenioIndice1], &duenios[duenioIndice2]);
+						SwapearEstadiaDuenio(&estadias[i], &estadias[j], &duenios[duenioIndice1], &duenios[duenioIndice2]);
 					}
 					else if(estadias[i].fecha.anio == estadias[j].fecha.anio && estadias[i].fecha.mes == estadias[j].fecha.mes && estadias[i].fecha.dia == estadias[j].fecha.dia)
 					{
 
 						if(strcmp(duenios[duenioIndice1].nombre, duenios[duenioIndice2].nombre) > 0)
 						{
-							estadiaDuenioSwap(&estadias[i], &estadias[j], &duenios[duenioIndice1], &duenios[duenioIndice2]);
+							SwapearEstadiaDuenio(&estadias[i], &estadias[j], &duenios[duenioIndice1], &duenios[duenioIndice2]);
 						}
 					}
 				}
@@ -383,7 +497,7 @@ void ordenarEstadiasPorFechaNombre(sEstadiaDiaria* estadias, int estadiasLen, sD
 	}
 }
 
-void estadiaDuenioSwap(sEstadiaDiaria* pEstadia1, sEstadiaDiaria* pEstadia2, sDuenio* pDuenio1, sDuenio* pDuenio2)
+void SwapearEstadiaDuenio(sEstadiaDiaria* pEstadia1, sEstadiaDiaria* pEstadia2, sDuenio* pDuenio1, sDuenio* pDuenio2)
 {
 	sEstadiaDiaria estadiaAux;
 	sDuenio duenioAux;

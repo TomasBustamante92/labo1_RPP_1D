@@ -333,7 +333,8 @@ int input_confirmacion(char* mensaje, char* error)
 
 void input_limpiarPantalla(void)
 {
-	printf("\n\n\n\n------------------------------------------ \n\n\n\n");
+	printf("\n\n\n\n\n\n     .-.     .-.     .-.     .-.     .-.     .-.     .-. \n"
+			"`._.'   `._.'   `._.'   `._.'   `._.'   `._.'   `._.'   `._.'\n\n\n\n\n\n");
 }
 
 
@@ -350,7 +351,7 @@ void input_convertirStringMinuscula(char* string)
 	}
 }
 
-int input_stringNombreApellido(char* string, char* message, char* errorMessage, int max)
+int input_pedirStringNombreApellido(char* string, char* message, char* errorMessage, int max)
 {
 	int retorno = -1;
 

@@ -85,10 +85,7 @@ int main(void) {
 				}
 				break;
 			case 2:
-				if(nexo_modificarEstadia(estadias, ESTADIA_LEN, duenios, DUENIOS_LEN, perros, PERROS_LEN, ultimoIdEstadia, ultimoIdPerros) != -1)
-				{
-					input_systemPause();
-				}
+				nexo_modificarEstadia(estadias, ESTADIA_LEN, duenios, DUENIOS_LEN, perros, PERROS_LEN, ultimoIdEstadia, ultimoIdPerros);
 				break;
 			case 3:
 				if(nexo_cancelarEstadia(estadias, ESTADIA_LEN, duenios, DUENIOS_LEN, perros, PERROS_LEN, ultimoIdEstadia) != -1)
@@ -130,7 +127,7 @@ int main(void) {
 				}
 				break;
 			case 6:
-				if(promedioDeEdadDePerros(perros, PERROS_LEN) != -1)
+				if(mostrarPromedioDeEdadDePerros(perros, PERROS_LEN) != -1)
 				{
 					input_systemPause();
 				}
@@ -142,8 +139,22 @@ int main(void) {
 				}
 				break;
 			case 7:
+				if(mostrarPerroConMasEstadias(estadias, ESTADIA_LEN, perros, PERROS_LEN) != -1)
+				{
+					input_systemPause();
+				}
 				break;
 			case 8:
+				if(listarPerrosConEstadias(estadias, ESTADIA_LEN, duenios, DUENIOS_LEN, perros, PERROS_LEN) != -1)
+				{
+					input_systemPause();
+				}
+				else
+				{
+					input_limpiarPantalla();
+					printf("No hay perros en la base de datos! \n");
+					input_systemPause();
+				}
 				break;
 			case 9:
 				input_limpiarPantalla();
