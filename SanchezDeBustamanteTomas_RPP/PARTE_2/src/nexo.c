@@ -7,7 +7,7 @@
 
 #include "nexo.h"
 
-int listarPerrosConEstadias(sEstadiaDiaria* estadias, int estadiasLen, sDuenio* duenios, int dueniosLen, sPerro* perros, int perrosLen)
+int nexo_listarPerrosConEstadias(sEstadiaDiaria* estadias, int estadiasLen, sDuenio* duenios, int dueniosLen, sPerro* perros, int perrosLen)
 {
 	int retorno = -1;
 	int i;
@@ -37,7 +37,7 @@ int listarPerrosConEstadias(sEstadiaDiaria* estadias, int estadiasLen, sDuenio* 
 	return retorno;
 }
 
-int mostrarPerroConMasEstadias(sEstadiaDiaria* estadias, int estadiasLen, sPerro* perros, int perrosLen)
+int nexo_mostrarPerroConMasEstadias(sEstadiaDiaria* estadias, int estadiasLen, sPerro* perros, int perrosLen)
 {
 	int retorno = -1;
 	int contadorLobo = 0;
@@ -365,7 +365,7 @@ int nexo_reservarEstadia(sEstadiaDiaria* estadias, int estadiasLen, sDuenio* due
 
 	if(estadias != NULL && estadiasLen > 0 && duenios != NULL && dueniosLen > 0 && perros != NULL && perrosLen > 0 && ultimoIdEstadia > 0 && ultimoIdPerros > 0 && ultimoIdDuenios > 0)
 	{
-		indiceEstadias = encontrarLugarEstadia(estadias, estadiasLen);
+		indiceEstadias = estadia_encontrarLugarEstadia(estadias, estadiasLen);
 
 		if(indiceEstadias != -1)
 		{
@@ -450,20 +450,19 @@ int nexo_reservarEstadia(sEstadiaDiaria* estadias, int estadiasLen, sDuenio* due
 	return retorno;
 }
 
-void ordenarEstadiasPorFechaNombre(sEstadiaDiaria* estadias, int estadiasLen, sDuenio* duenios, int dueniosLen)
+void nexo_ordenarEstadiasPorFechaNombre(sEstadiaDiaria* estadias, int estadiasLen, sDuenio* duenios, int dueniosLen)
 {
 	int i;
 	int j;
-	int nuevoLen = estadiasLen;
 	int duenioIndice1;
 	int duenioIndice2;
 
 
 	if(estadias != NULL && estadiasLen > 0 && duenios != NULL && dueniosLen > 0)
 	{
-		for(i=0 ; i<nuevoLen-1 ; i++)
+		for(i=0 ; i<estadiasLen-1 ; i++)
 		{
-			for(j=i+1 ; j<nuevoLen ; j++)
+			for(j=i+1 ; j<estadiasLen ; j++)
 			{
 				if(estadias[i].isEmpty == OCUPADO && estadias[j].isEmpty == OCUPADO)
 				{
@@ -472,32 +471,31 @@ void ordenarEstadiasPorFechaNombre(sEstadiaDiaria* estadias, int estadiasLen, sD
 
 					if(estadias[i].fecha.anio < estadias[j].fecha.anio)
 					{
-						SwapearEstadiaDuenio(&estadias[i], &estadias[j], &duenios[duenioIndice1], &duenios[duenioIndice2]);
+						nexo_swapearEstadiaDuenio(&estadias[i], &estadias[j], &duenios[duenioIndice1], &duenios[duenioIndice2]);
 					}
 					else if(estadias[i].fecha.anio == estadias[j].fecha.anio && estadias[i].fecha.mes < estadias[j].fecha.mes)
 					{
-						SwapearEstadiaDuenio(&estadias[i], &estadias[j], &duenios[duenioIndice1], &duenios[duenioIndice2]);
+						nexo_swapearEstadiaDuenio(&estadias[i], &estadias[j], &duenios[duenioIndice1], &duenios[duenioIndice2]);
 					}
 					else if(estadias[i].fecha.anio == estadias[j].fecha.anio && estadias[i].fecha.mes == estadias[j].fecha.mes && estadias[i].fecha.dia < estadias[j].fecha.dia)
 					{
-						SwapearEstadiaDuenio(&estadias[i], &estadias[j], &duenios[duenioIndice1], &duenios[duenioIndice2]);
+						nexo_swapearEstadiaDuenio(&estadias[i], &estadias[j], &duenios[duenioIndice1], &duenios[duenioIndice2]);
 					}
 					else if(estadias[i].fecha.anio == estadias[j].fecha.anio && estadias[i].fecha.mes == estadias[j].fecha.mes && estadias[i].fecha.dia == estadias[j].fecha.dia)
 					{
 
 						if(strcmp(duenios[duenioIndice1].nombre, duenios[duenioIndice2].nombre) > 0)
 						{
-							SwapearEstadiaDuenio(&estadias[i], &estadias[j], &duenios[duenioIndice1], &duenios[duenioIndice2]);
+							nexo_swapearEstadiaDuenio(&estadias[i], &estadias[j], &duenios[duenioIndice1], &duenios[duenioIndice2]);
 						}
 					}
 				}
 			}
-		nuevoLen--;
 		}
 	}
 }
 
-void SwapearEstadiaDuenio(sEstadiaDiaria* pEstadia1, sEstadiaDiaria* pEstadia2, sDuenio* pDuenio1, sDuenio* pDuenio2)
+void nexo_swapearEstadiaDuenio(sEstadiaDiaria* pEstadia1, sEstadiaDiaria* pEstadia2, sDuenio* pDuenio1, sDuenio* pDuenio2)
 {
 	sEstadiaDiaria estadiaAux;
 	sDuenio duenioAux;

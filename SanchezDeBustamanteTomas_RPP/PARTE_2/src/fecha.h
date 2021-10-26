@@ -19,13 +19,13 @@ typedef struct{
 
 } sFecha;
 
-/// @fn int validarFecha(int, int)
+/// @fn int fecha_validarFecha(int, int)
 /// @brief corroborar que la fecha exista
 ///
 /// @param dia
 /// @param mes
 /// @return devuelve [0] si existe la fecha, caso contrario [-1]
-int validarFecha(int dia, int mes);
+int fecha_validarFecha(int dia, int mes);
 
 /// @fn int fecha_pedirFecha(int*, int*, int*)
 /// @brief pide al usuario por una fecha

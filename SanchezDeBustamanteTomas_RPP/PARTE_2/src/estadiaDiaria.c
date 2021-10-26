@@ -7,7 +7,7 @@
 
 #include "estadiaDiaria.h"
 
-void inicializarEstadiaIsEmpty(sEstadiaDiaria* estadias, int estadiasLen)
+void estadia_inicializarEstadiaIsEmpty(sEstadiaDiaria* estadias, int estadiasLen)
 {
 	int i;
 
@@ -20,7 +20,7 @@ void inicializarEstadiaIsEmpty(sEstadiaDiaria* estadias, int estadiasLen)
 	}
 }
 
-int encontrarLugarEstadia(sEstadiaDiaria* estadias, int estadiasLen)
+int estadia_encontrarLugarEstadia(sEstadiaDiaria* estadias, int estadiasLen)
 {
 	int retorno = -1;
 	int i;

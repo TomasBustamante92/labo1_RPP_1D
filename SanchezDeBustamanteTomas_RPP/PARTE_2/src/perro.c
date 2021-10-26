@@ -83,7 +83,7 @@ int perro_encontrarPerroId(sPerro* perros, int perrosLen, int idPerroAux)
 	return retorno;
 }
 
-int mostrarPromedioDeEdadDePerros(sPerro* perros, int perrosLen)
+int perro_mostrarPromedioDeEdadDePerros(sPerro* perros, int perrosLen)
 {
 	int retorno = -1;
 	float promedio;

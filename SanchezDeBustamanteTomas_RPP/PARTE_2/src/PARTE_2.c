@@ -19,12 +19,12 @@ int main(void) {
 	setbuf(stdout, NULL);
 
 	int opcion;
-	int ultimoIdEstadia = 100002; // CAMBIAAAAAAAAAAR CUANDO SACAMOS HARDCODEOOO // CAMBIAAAAAAAAAAR CUANDO SACAMOS HARDCODEOOO
+	int ultimoIdEstadia = 100000;
 	int ultimoIdDuenios = 30004;
 	int ultimoIdPerros = 7002;
 
 	sEstadiaDiaria estadias[ESTADIA_LEN];
-	inicializarEstadiaIsEmpty(estadias, ESTADIA_LEN);
+	estadia_inicializarEstadiaIsEmpty(estadias, ESTADIA_LEN);
 
 	sPerro perros[PERROS_LEN] = { 	{7000, "Lobo", "Sharpei", 2 ,OCUPADO},
 									{7001, "Sheila", "Golden", 12, OCUPADO},
@@ -39,17 +39,7 @@ int main(void) {
 										{30004, "Nicolas", 1169858740, OCUPADO}
 	};
 
-	// SACAAAAAAAAAR HARDCODEO!!!!!!!!!!!!!!!!!!!!
-	sEstadiaDiaria estadiasAux[ESTADIA_LEN] = {	{100000, 30000, 7001, {2,2,2021},OCUPADO}, // SACAAAAAAAAAR HARDCODEO!!!!!!!!!!!!!!!!!!!!
-												{100001, 30002, 7000, {2,3,2022},OCUPADO}, // SACAAAAAAAAAR HARDCODEO!!!!!!!!!!!!!!!!!!!!
-												{100002, 30000, 7002, {4,2,2021},OCUPADO}  // SACAAAAAAAAAR HARDCODEO!!!!!!!!!!!!!!!!!!!!
-	};
 
-	for(int i=0 ; i<3 ; i++)
-	{
-		estadias[i] = estadiasAux[i];
-	}
-	// SACAAAAAAAAAR HARDCODEO!!!!!!!!!!!!!!!!!!!!
 
 	do{
 		input_getNumero(&opcion, 	"1. Reservar estadia \n"
@@ -94,15 +84,9 @@ int main(void) {
 					printf("Baja exitosa! \n");
 					input_systemPause();
 				}
-				else
-				{
-					input_limpiarPantalla();
-					printf("ERROR: ARRAYS VACIOS! \n");
-					input_systemPause();
-				}
 				break;
 			case 4:
-				ordenarEstadiasPorFechaNombre(estadias, ESTADIA_LEN, duenios, DUENIOS_LEN);
+				nexo_ordenarEstadiasPorFechaNombre(estadias, ESTADIA_LEN, duenios, DUENIOS_LEN);
 				if(nexo_imprimirEstadias(estadias, ESTADIA_LEN, duenios, DUENIOS_LEN, perros, PERROS_LEN) != -1)
 				{
 					input_systemPause();
@@ -127,7 +111,7 @@ int main(void) {
 				}
 				break;
 			case 6:
-				if(mostrarPromedioDeEdadDePerros(perros, PERROS_LEN) != -1)
+				if(perro_mostrarPromedioDeEdadDePerros(perros, PERROS_LEN) != -1)
 				{
 					input_systemPause();
 				}
@@ -139,20 +123,20 @@ int main(void) {
 				}
 				break;
 			case 7:
-				if(mostrarPerroConMasEstadias(estadias, ESTADIA_LEN, perros, PERROS_LEN) != -1)
+				if(nexo_mostrarPerroConMasEstadias(estadias, ESTADIA_LEN, perros, PERROS_LEN) != -1)
 				{
 					input_systemPause();
 				}
 				break;
 			case 8:
-				if(listarPerrosConEstadias(estadias, ESTADIA_LEN, duenios, DUENIOS_LEN, perros, PERROS_LEN) != -1)
+				if(nexo_listarPerrosConEstadias(estadias, ESTADIA_LEN, duenios, DUENIOS_LEN, perros, PERROS_LEN) != -1)
 				{
 					input_systemPause();
 				}
 				else
 				{
 					input_limpiarPantalla();
-					printf("No hay perros en la base de datos! \n");
+					printf("No hay estadias en la base de datos! \n");
 					input_systemPause();
 				}
 				break;

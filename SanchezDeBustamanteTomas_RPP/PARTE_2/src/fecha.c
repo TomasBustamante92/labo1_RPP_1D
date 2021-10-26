@@ -23,7 +23,7 @@ int fecha_pedirFecha(int* dia, int* mes, int* anio)
 			input_getNumero(&diaAux, "Dia: ", "ERROR Dia [1-31]: ", 1, 31);
 			input_getNumero(&mesAux, "Mes: ", "ERROR Mes [1-12]: ", 1, 12);
 
-			fecha = validarFecha(diaAux, mesAux);
+			fecha = fecha_validarFecha(diaAux, mesAux);
 			if(fecha == -1)
 			{
 				printf("Fecha incorrecta \n");
@@ -42,7 +42,7 @@ int fecha_pedirFecha(int* dia, int* mes, int* anio)
 	return retorno;
 }
 
-int validarFecha(int dia, int mes)
+int fecha_validarFecha(int dia, int mes)
 {
 	int retorno = 0;
 
