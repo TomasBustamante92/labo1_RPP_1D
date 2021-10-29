@@ -53,6 +53,7 @@ int main(void) {
 									"10. Cantidad de dueños que se llaman alan con una estadia o mas \n"
 									"11. Listado de estadias por dueñas que se llaman lucia reservadas en la 2da quincena de noviembre \n"
 									"12. Salir\n"
+									"- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n"
 									"Ingrese una opcion: ",
 									"1. Reservar estadia \n"
 									"2. Modificar estadia \n"
@@ -66,6 +67,7 @@ int main(void) {
 									"10. Cantidad de dueños que se llaman alan con una estadia o mas \n"
 									"11. Listado de estadias por dueñas que se llaman lucia reservadas en la 2da quincena de noviembre \n"
 									"12. Salir\n"
+									"- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n"
 									"ERROR. Ingrese una opcion: ", 1, 12);
 
 		switch(opcion)
